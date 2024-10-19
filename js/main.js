@@ -15,7 +15,6 @@ const cheerio = require('cheerio');
 const http = require('http');
 const url = require('url');
 const querystring = require('querystring');
-const { console } = require('inspector');
 
 const app = express();
 const PORT = 80;
@@ -39,30 +38,10 @@ const industry_pagetamplate_loot = path.join(page_loot,"industry","tamplate");
 
 const versionfilePath = path.join(__dirname,"/../version","page.json");
 
-
-try {
-    let pagever = JSON.parse(fs.readFileSync(path.join(__dirname, "/../version", "page.json"), 'utf-8'));
-    console.log(pagever);
-} catch (error) {
-    console.error("Error reading or parsing JSON file:", error);
-};
+let pagever = JSON.parse(fs.readFileSync(path.join(__dirname, "/../version", "page.json"), 'utf-8'));
+console.log(pagever);
+console.error("Error reading or parsing JSON file:", error);
 const version = ReadFile(versionfilePath);
-/*
-let page_version = {
-    "industry" : {
-        "page" : "0_0_1",
-        "tamplate" : "0_0_1"
-    },
-    "meta" : {
-        "page" : "0_0_1",
-        "tamplate" : "0_0_1"
-    },
-    "seller" : {
-        "page" : "0_0_1",
-        "tamplate" : "0_0_1"
-    }
-}
-*/
 
 
 
@@ -435,12 +414,6 @@ function pluschat(chat_number,fromuser,touser,chat){
 }
 function findusername(userid){
     //userid hang05312
-    /*
-    저장되있는 데이터
-    {
-        "username" : "대표"
-    }
-    */
     // 데이터베이스 루트 경로 (data_base가 이미 설정된 변수라고 가정)
     const filePath = path.join(data_base, "database", "user", `${userid}.json`);
 
