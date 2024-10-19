@@ -568,8 +568,7 @@ function ReadFile(filePath){
 
 // 서버 시작
 app.listen(PORT, () => {
-    
-    console.log(`서버가 http://localhost:${PORT}에서 실행 중입니다.`);
+    console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`);
 });
 
 /*   기존 루트 "/"
