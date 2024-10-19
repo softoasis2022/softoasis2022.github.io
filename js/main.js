@@ -86,11 +86,6 @@ app.get('/', (req, res) => { //기업 소개 페이지
 app.get('/seller', (req, res) => {
     const tk = req.query.tk;
 
-    const responseData = {
-        pageContent: page, // 페이지 정보
-        data: "user" // 응답할 데이터
-    };
-
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(seller_page_loot,"mainhome.html");
 
@@ -101,7 +96,7 @@ app.get('/seller', (req, res) => {
     else{
         page = applyPageToTemplate(Readtamplate,Readpage);
     }
-    res.json(responseData);
+    res.send(page);
 });
 
 app.get('/sellerlogin', (req, res) => {
