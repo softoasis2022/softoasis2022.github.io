@@ -16,8 +16,9 @@ const querystring = require('querystring');
 
 const app = express();
 
-const db = require('./route/database')
-db.connect()
+//프로그램 오류로 주석 처리 구동 완료 확인ㄴ
+const db = require('./route/database');
+db.connect();
 
 const PORT = 80;
 
@@ -97,7 +98,7 @@ app.get('/mataCommerceLogin', (req, res) => { //기업 소개 페이지
 
 app.get('/mataCommerceRegister', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(meta_page_loot,"login.html");
+    let Readpage = path.join(meta_page_loot,"register.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
     
     res.send(page);
@@ -115,22 +116,24 @@ app.post('/login_pass', async (req, res) => {
     }
 });
 app.post('/join_pass', async (req, res) => {
-    const { email, password } = req.body;
+    const { id, password } = req.body;
+    console.log(id+password);
+
     try {
-        const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
-        console.log(token);
-        res.status(200).json({ token: token });  // 토큰을 응답으로 보냅니다.
+        //const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        //console.log(token);
+        res.status(200).json({ token: "회원가입 완료" });  // 토큰을 응답으로 보냅니다.
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
     }
 });
 app.post('/userinfo', async (req, res) => {
-    const { email, password } = req.body;
+    const { id, password, } = req.body;
     try {
-        const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
-        console.log(token);
-        res.status(200).json({ token: token });  // 토큰을 응답으로 보냅니다.
+        //const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        //console.log(token);
+        res.status(200).json({ token: "회원가입 완료" });  // 토큰을 응답으로 보냅니다.
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
