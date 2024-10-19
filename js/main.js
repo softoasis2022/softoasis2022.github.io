@@ -17,6 +17,11 @@ const url = require('url');
 const querystring = require('querystring');
 
 const app = express();
+
+//db 접속
+const db = require('./route/database')
+db.connect()
+
 const PORT = 80;
 
 let page; //페이지정보를 보내는 데이터 저장
@@ -515,7 +520,7 @@ function ReadFile(filePath){
 // 서버 시작
 app.listen(PORT, () => {
     
-    console.log(`서버가 http://localhost:${PORT}에서 실행 중입니다.`);
+    console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`);
 });
 
 /*   기존 루트 "/"
@@ -536,4 +541,3 @@ const productList = products.map(product => `
     </div>
 `).join('');
 */
-
