@@ -1,5 +1,3 @@
-
-
 /*
 
 /seller를 제외한 모든 응답 앤드 포인트 수정해야 함
@@ -18,7 +16,6 @@ const querystring = require('querystring');
 
 const app = express();
 
-//db 접속
 const db = require('./route/database')
 db.connect()
 
@@ -50,8 +47,6 @@ let pagever = JSON.parse(fs.readFileSync(path.join(__dirname, "/../version", "pa
 console.log(pagever);
 const version = ReadFile(versionfilePath);
 
-
-
 // 이미지 저장 경로 설정
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -71,8 +66,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let products = [];
 let cart = [];
 
-
-
 // uploads 디렉토리를 static 파일로 제공
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -84,6 +77,64 @@ app.get('/', (req, res) => { //기업 소개 페이지
     page = applyPageToTemplate(Readtamplate,Readpage);
 
     res.send(page);
+});
+
+//메타커머스E 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+app.get('/mataCommerce', (req, res) => { //기업 소개 페이지
+    let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(meta_page_loot,"mainhome.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
+    
+    res.send(page);
+});
+app.get('/mataCommerceLogin', (req, res) => { //기업 소개 페이지
+    let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(meta_page_loot,"login.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
+    
+    res.send(page);
+});
+
+app.get('/mataCommerceRegister', (req, res) => { //기업 소개 페이지
+    let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(meta_page_loot,"login.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
+    
+    res.send(page);
+});
+
+app.post('/login_pass', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        console.log(token);
+        res.status(200).json({ token: token });  // 토큰을 응답으로 보냅니다.
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
+    }
+});
+app.post('/join_pass', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        console.log(token);
+        res.status(200).json({ token: token });  // 토큰을 응답으로 보냅니다.
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
+    }
+});
+app.post('/userinfo', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        console.log(token);
+        res.status(200).json({ token: token });  // 토큰을 응답으로 보냅니다.
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
+    }
 });
 
 //판매자 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -107,8 +158,8 @@ app.get('/seller', (req, res) => {
 app.get('/sellerlogin', (req, res) => {
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(seller_page_loot,"mainhome.html");
+    
     page = applyPageToTemplate(Readtamplate,Readpage);
-
     res.send(page);
 });
 
@@ -128,13 +179,11 @@ app.get('/productfind', (req, res) => {
     let Readpage = path.join(page_loot,"seller","page","review_chat.html");
 
     page = applyPageToTemplate(Readtamplate,Readpage);
-
-
     res.send(page);
 });
 
 // 상품 등록 폼 페이지 seller
-app.get('/register', (req, res) => {
+app.get('/productregister', (req, res) => {
     res.send(`
         <!DOCTYPE html>
         <html lang="ko">
@@ -520,7 +569,7 @@ function ReadFile(filePath){
 // 서버 시작
 app.listen(PORT, () => {
     
-    console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`);
+    console.log(`서버가 http://localhost:${PORT}에서 실행 중입니다.`);
 });
 
 /*   기존 루트 "/"
@@ -541,3 +590,4 @@ const productList = products.map(product => `
     </div>
 `).join('');
 */
+
