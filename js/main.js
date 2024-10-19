@@ -36,11 +36,13 @@ const meta_pagetamplate_loot = path.join(page_loot,"meta","tamplate");
 const industry_page_loot = path.join(page_loot,"industry","page");
 const industry_pagetamplate_loot = path.join(page_loot,"industry","tamplate");
 
+const admin_page_loot = path.join(page_loot,"admin","page");
+const admin_pagetamplate_loot = path.join(page_loot,"admin","tamplate");
+
 const versionfilePath = path.join(__dirname,"/../version","page.json");
 
 let pagever = JSON.parse(fs.readFileSync(path.join(__dirname, "/../version", "page.json"), 'utf-8'));
 console.log(pagever);
-console.error("Error reading or parsing JSON file:", error);
 const version = ReadFile(versionfilePath);
 
 
@@ -72,33 +74,63 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // 메인 페이지 라우트
 
 app.get('/', (req, res) => { //기업 소개 페이지
-    let tamplate = path.join();
+    let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(industry_page_loot,"mainhome.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
 
-    page = applyPageToTemplate();
-
-
-    res.send();
+    res.send(page);
 });
 
+//판매자 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
 app.get('/seller', (req, res) => {
-    let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(meta_page_loot,"mainhome.html");
+    const tk = req.query.tk;
+
+    const responseData = {
+        pageContent: page, // 페이지 정보
+        data: "user" // 응답할 데이터
+    };
+
+    let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(seller_page_loot,"mainhome.html");
+
+    if(tk != null){
+        page = applyPageToTemplate(Readtamplate,Readpage);
+        
+    }
+    else{
+        page = applyPageToTemplate(Readtamplate,Readpage);
+    }
+    res.json(responseData);
+});
+
+app.get('/sellerlogin', (req, res) => {
+    let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(seller_page_loot,"mainhome.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
-    console.log("feuoxfe");
+
     res.send(page);
 });
 
 app.get('/sellerchat', (req, res) => {
+    let page ;
+    let Readtamplate = path.join(page_loot,"seller","tamplate",`tamplate_0_0_1.html`);
+    let Readpage = path.join(page_loot,"seller","page","review_chat.html");
 
-    
-    let pageX ;
-    let tamplate = path.join(page_loot,"seller","tamplate",`${page_version.seller.tamplate}.html`);
-    let page = path.join(page_loot,"seller","page","review_chat.html");
-
-    pageX = applyPageToTemplate();
+    page = applyPageToTemplate(Readtamplate,Readpage);
 
 
-    res.send(pageX);
+    res.send(page);
+});
+app.get('/productfind', (req, res) => {
+    let page ;
+    let Readtamplate = path.join(page_loot,"seller","tamplate",`tamplate_0_0_1.html`);
+    let Readpage = path.join(page_loot,"seller","page","review_chat.html");
+
+    page = applyPageToTemplate(Readtamplate,Readpage);
+
+
+    res.send(page);
 });
 
 // 상품 등록 폼 페이지 seller
@@ -366,11 +398,21 @@ app.post('/chat', (req, res) => {
         pluschat(action,fromuser,touser,chat);
     }
 });
+//어드민ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+app.get('/admin', (req, res) => {
+    let page ;
+    let Readtamplate = path.join(admin_pagetamplate_loot,`tamplate_0_0_1.html`);
+    let Readpage = path.join(admin_page_loot,"mainhome.html");
+
+    page = applyPageToTemplate(Readtamplate,Readpage);
+
+
+    res.send(page);
+});
 
 
 
-
-
+//함수ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 function applyPageToTemplate(templatePath, pagePath) {
     let template = readfile(templatePath);
     let pageContent = readfile(pagePath);
@@ -378,10 +420,8 @@ function applyPageToTemplate(templatePath, pagePath) {
     return template.replace(mainPageRegex, `<div id="mainpage">${pageContent}</div>`);
 }
 function readfile(templatePath) {
-    console.log(templatePath);
     return fs.readFileSync(templatePath, 'utf-8');
 }
-
 function chat(action,fromuser,touser,chat){
     // 받아야 하는 데이터 : 액션 이름(action). 유저 아이디(fromuser), 챗 대상 아이디 (touser), 
     // 불러올 데이터 : 시간(chattime), 
