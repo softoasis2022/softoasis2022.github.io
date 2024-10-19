@@ -1,0 +1,80 @@
+<div id="mainpage">
+    <div style="width: 100%; height: fit-content; display: flex; justify-content: center;">
+        <style>
+            #maketing_space{
+                width: 50px;
+                height: 100%;
+            }
+        </style>
+        <div id="maketing_space">
+            광고
+        </div>
+        <div style="width: fit-content; height: fit-content;">
+            <div>
+                <div >
+                    <input id="input_id" style="width: 500px; height: 50px;">
+                </div>
+                <div>
+                    <input id="input_pw" style="width: 500px; height: 50px;">
+                </div>
+                <div style="width: 500px; height: 55px; background-color: aquamarine;" onclick="login_pass()">
+                    <p style="width: 100%; height: 100%; text-align: center; margin-top: 20px; margin-bottom: 20px; font-size: medium;">로그인</p>
+                </div>
+            </div>
+            <div id="apilogin">
+                <div id="warp_apilogin">
+                    <div id="google_login">
+                        
+                    </div>
+                </div>
+                <div id="warp_apilogin">
+                    <div id="naver_login">
+                        
+                    </div>
+                </div>
+                <div id="warp_apilogin">
+                    <div id="kakao_login">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="maketing_space">
+            광고
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <script>
+        function login_pass(){
+            const id_wrap = document.getElementById('input_id'); // ID가 'email_input'인 요소를 찾음
+            const pw_wrap = document.getElementById('input_pw'); // ID가 'pw_input'인 요소를 찾음
+            const input_id = id_wrap.value; // email 입력 필드의 값을 가져옴
+            const input_pw = pw_wrap.value; // password 입력 필드의 값을 가져옴
+            //console.log(input_email, input_pw); // 콘솔에 이메일과 비밀번호를 출력
+            
+            fetch('/login_pass', {
+                method: 'POST', // POST 요청을 사용
+                headers: {'Content-Type': 'application/json' // 요청의 본문이 JSON 형태임을 명시
+                },
+                body: JSON.stringify({
+                    id : input_id, // 이메일 데이터
+                    password: input_pw // 비밀번호 데이터
+                })
+                })
+                .then(response => response.json()) // 서버로부터의 응답을 JSON 형태로 파싱
+                .then(data => {
+                    if (data.token == 'no_user') {
+                        alert("아이디 또는 비밀번호를 확인해 주세요");
+                        console.log(data.token);
+                    }
+                    else{
+                        window.location.href = `/mataCommerce?token=${data.token}`;
+                        console.log(data.token);
+                    }
+                })
+                .catch(error => console.error('Error:', error)); // 에러가 발생한 경우 콘솔에 에러를 출력
+        }
+    </script>
+</div>
