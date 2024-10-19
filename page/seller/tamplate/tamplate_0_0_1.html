@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스토어 이름</title>
+    <style>
+        #store_name{
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(90deg, #58FFEB, #FFF0BA);
+        }
+        #warp_store_set{
+            width: 100%;
+            height: fit-content;
+            display: flex;
+        }
+        #warp_store_set_menu{
+            width: fit-content;
+            height: fit-content;
+            background-color: darkgrey;
+        }
+    </style>
+</head>
+<body>
+    <div id="store_name">
+        
+    </div>
+    <div id="warp_store_set">
+        <div id="warp_store_set_menu">
+            <style>
+                #warp_set_menu{
+                    padding: 30px;
+                }
+                #warp_set_submenu{
+                    padding: 30px;
+                    
+                }
+            </style>
+            <div id="store_sditmenu">
+                <div id="warp_set_menu" onclick="menuclick(this)">
+                    상품 관리
+                </div>
+                <div id="warp_set_submenu" style="display: none;" onclick="location.href='/productfind?'">
+                    상품 조회
+                </div>
+            </div>
+            
+            <div id="warp_set_menu">
+                판매 관리
+            </div>
+            <div id="warp_set_menu">
+                정산 관리
+            </div>
+            <div id="warp_set_menu" onclick="location.href='/sellerchat'">
+                문의/리뷰
+            </div>
+            <div id="warp_set_menu">
+                
+            </div>
+            <div id="warp_set_menu">
+                
+            </div>
+        </div>
+        <div id="mainpage"></div>
+        <script>
+            window.onload = function() {
+                
+            };
+            function menuclick(clickedElement) {
+                // 클릭한 요소의 부모 노드를 가져옴
+                var parentDiv = clickedElement.parentNode;
+                
+                // 부모 노드 내에서 'warp_set_submenu' 요소를 찾음
+                var submenu = parentDiv.querySelector('#warp_set_submenu'); // id로 요소 찾기
+
+                if (submenu) {
+                    // 현재 display 속성 값에 따라 토글
+                    if (submenu.style.display === 'block') {
+                        submenu.style.display = 'none'; // 현재 block이면 none으로
+                    } else {
+                        submenu.style.display = 'block'; // 현재 none이면 block으로
+                    }
+                }
+            }
+            function submenuclick(){
+
+            }
+            
+        </script>
+    </div>
+</body>
+</html>
