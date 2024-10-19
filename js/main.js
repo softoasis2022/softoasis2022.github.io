@@ -5,8 +5,6 @@
 /seller를 제외한 모든 응답 앤드 포인트 수정해야 함
 
 */
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
@@ -21,13 +19,6 @@ const { console } = require('inspector');
 
 const app = express();
 const PORT = 80;
-
-path.join(__dirname,"/../version","page.json");
-fs.readFileSync(path.join(__dirname,"/../version","page.json"), 'utf-8');
-
-let pagever = JSON.parse(fs.readFileSync(path.join(__dirname,"/../version","page.json"), 'utf-8'));  //페이지 버전을 json으로 저장 하는 변수
-
-
 
 let page; //페이지정보를 보내는 데이터 저장
 
@@ -49,10 +40,13 @@ const industry_pagetamplate_loot = path.join(page_loot,"industry","tamplate");
 const versionfilePath = path.join(__dirname,"/../version","page.json");
 
 
-
+try {
+    let pagever = JSON.parse(fs.readFileSync(path.join(__dirname, "/../version", "page.json"), 'utf-8'));
+    console.log(pagever);
+} catch (error) {
+    console.error("Error reading or parsing JSON file:", error);
+};
 const version = ReadFile(versionfilePath);
-console.log(version);
-
 /*
 let page_version = {
     "industry" : {
@@ -111,7 +105,7 @@ app.get('/seller', (req, res) => {
     let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(meta_page_loot,"mainhome.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
-
+    console.log("feuoxfe");
     res.send(page);
 });
 
