@@ -3,6 +3,9 @@
 /seller를 제외한 모든 응답 앤드 포인트 수정해야 함
 
 */
+
+//루트중 nullapi는 기능이 구현되 있지 않은 루트 이다
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
@@ -17,8 +20,8 @@ const querystring = require('querystring');
 const app = express();
 
 //프로그램 오류로 주석 처리 구동 완료 확인ㄴ
-const db = require('./route/database');
-db.connect();
+//const db = require('./route/database');
+//db.connect();
 
 const PORT = 80;
 
@@ -79,6 +82,21 @@ app.get('/', (req, res) => { //기업 소개 페이지
 
     res.send(page);
 });
+app.get('/industryinfo', (req, res) => { //기업 소개 페이지
+    let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(industry_page_loot,"mainhome.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
+
+    res.send(page);
+});
+app.get('/projectinfo', (req, res) => { //기업 소개 페이지
+    let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(industry_page_loot,"projectinfo.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
+
+    res.send(page);
+});
+
 
 //메타커머스E 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 app.get('/mataCommerce', (req, res) => { //기업 소개 페이지
@@ -95,38 +113,12 @@ app.get('/mataCommerceLogin', (req, res) => { //기업 소개 페이지
     
     res.send(page);
 });
-
 app.get('/mataCommerceRegister', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(meta_page_loot,"register.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
     
     res.send(page);
-});
-
-app.post('/login_pass', async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
-        console.log(token);
-        res.status(200).json({ token: token });  // 토큰을 응답으로 보냅니다.
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
-    }
-});
-app.post('/join_pass', async (req, res) => {
-    const { id, password } = req.body;
-    console.log(id+password);
-
-    try {
-        //const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
-        //console.log(token);
-        res.status(200).json({ token: "회원가입 완료" });  // 토큰을 응답으로 보냅니다.
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
-    }
 });
 app.post('/userinfo', async (req, res) => {
     const { id, password, } = req.body;
@@ -142,6 +134,7 @@ app.post('/userinfo', async (req, res) => {
 
 //판매자 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
+//판매자 기본 메인 페이지
 app.get('/seller', (req, res) => {
     const tk = req.query.tk;
 
@@ -157,7 +150,7 @@ app.get('/seller', (req, res) => {
     }
     res.send(page);
 });
-
+//판매자 로그인 페이지
 app.get('/sellerlogin', (req, res) => {
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(seller_page_loot,"mainhome.html");
@@ -165,7 +158,6 @@ app.get('/sellerlogin', (req, res) => {
     page = applyPageToTemplate(Readtamplate,Readpage);
     res.send(page);
 });
-
 app.get('/sellerchat', (req, res) => {
     let page ;
     let Readtamplate = path.join(page_loot,"seller","tamplate",`tamplate_0_0_1.html`);
@@ -184,7 +176,6 @@ app.get('/productfind', (req, res) => {
     page = applyPageToTemplate(Readtamplate,Readpage);
     res.send(page);
 });
-
 // 상품 등록 폼 페이지 seller
 app.get('/productregister', (req, res) => {
     res.send(`
@@ -232,7 +223,6 @@ app.get('/productregister', (req, res) => {
         </html>
     `);
 });
-
 // 상품 등록 엔드포인트 seller
 app.post('/api/products', upload.single('image'), (req, res) => {
     const { name, description, price } = req.body;
@@ -461,7 +451,44 @@ app.get('/admin', (req, res) => {
 
     res.send(page);
 });
+//토탈 기능(모든 홈페이지적용 가능한 api및 기능)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+app.post('/login_pass', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        console.log(token);
+        res.status(200).json({ token: token });  // 토큰을 응답으로 보냅니다.
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
+    }
+});
+app.post('/join_pass', async (req, res) => {
+    const { id, password } = req.body;
+    console.log(id+password);
 
+    try {
+        //const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        //console.log(token);
+        res.status(200).json({ token: "회원가입 완료" });  // 토큰을 응답으로 보냅니다.
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
+    }
+});
+app.post('/nullapi', async (req, res) => {
+    const { id, password } = req.body;
+    console.log(id+password);
+
+    try {
+        //const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        //console.log(token);
+        res.status(200).json({ token: "회원가입 완료" });  // 토큰을 응답으로 보냅니다.
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
+    }
+});
 
 
 //함수ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
