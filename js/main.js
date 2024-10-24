@@ -20,17 +20,17 @@ const querystring = require('querystring');
 const app = express();
 
 //프로그램 오류로 주석 처리 구동 완료 확인ㄴ
-//const db = require('./route/database');
-//db.connect();
+const db = require('./route/user');
+db.connect();
 
 const PORT = 80;
 
 let page; //페이지정보를 보내는 데이터 저장
 
 //데이터 저장 경로
-const data_base = path.join("D","softoasis");
+const data_base = path.join("D:","softoasis");
 const page_loot = path.join(__dirname,"/../page");
-
+const admin_data = path.join(data_base,"admin");
 
 //html 정보가 저장된 루트
 const seller_page_loot = path.join(page_loot,"seller","page");
@@ -73,9 +73,44 @@ let cart = [];
 // uploads 디렉토리를 static 파일로 제공
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-//기업 페이지 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//어드민ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+app.get('/admin', (req, res) => {
+    let page ;
+    let Readtamplate = path.join(admin_pagetamplate_loot,`tamplate_0_0_1.html`);
+    let Readpage = path.join(admin_page_loot,"mainhome.html");
 
-//소프트오아시스 페이지
+    page = applyPageToTemplate(Readtamplate,Readpage);
+    
+
+    res.send(page);
+});
+app.post('/adminmember', async (req, res) => {
+    const { action } = req.body;
+    let HR = ["developer1", "developer2", "HR", "produce"];
+    const admin_member_ref = path.join(admin_data, "member");
+    let resdata = {
+        "developer1": "",
+        "developer2": "",
+        "HR": "",
+        "produce": ""
+    };
+
+    // 비동기 처리를 위해 async/await 사용
+    for (let i = 0; i < HR.length; i++) {
+        try {
+            const inputdata = await ReadFile(path.join(admin_member_ref, `${HR[i]}.json`));
+            resdata[HR[i]] = JSON.parse(inputdata);
+        } catch (err) {
+            console.error(`Error reading file for ${HR[i]}:`, err);
+        }
+    }
+
+    console.log(resdata);
+    res.status(200).json({ "resdata": resdata });
+});
+
+
+//소프트오아시스 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 app.get('/', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(industry_page_loot,"mainhome.html");
@@ -464,17 +499,7 @@ app.post('/chat', (req, res) => {
         pluschat(action,fromuser,touser,chat);
     }
 });
-//어드민ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-app.get('/admin', (req, res) => {
-    let page ;
-    let Readtamplate = path.join(admin_pagetamplate_loot,`tamplate_0_0_1.html`);
-    let Readpage = path.join(admin_page_loot,"mainhome.html");
 
-    page = applyPageToTemplate(Readtamplate,Readpage);
-
-
-    res.send(page);
-});
 
 
 
@@ -602,24 +627,15 @@ function generateRandomString(length) {
 
     return result;
 }
-function ReadFile(filePath){
-    fs.readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-            console.error(`Error reading user file for `, err);
-            return;
-        }
-
-        // 2. 읽은 파일을 JSON으로 파싱하기
-        let userData;
-        try {
-            userData = JSON.parse(data);
-            
-        } catch (parseErr) {
-            console.error('Error parsing JSON data:', parseErr);
-            return ;
-        }
-
-        return userData;
+function ReadFile(filePath) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+                reject(err); // 에러 발생 시 reject
+                return;
+            }
+            resolve(data); // 성공 시 resolve
+        });
     });
 }
 
