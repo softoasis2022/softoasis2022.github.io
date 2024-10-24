@@ -73,8 +73,9 @@ let cart = [];
 // uploads 디렉토리를 static 파일로 제공
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// 메인 페이지 라우트
+//기업 페이지 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
+//소프트오아시스 페이지
 app.get('/', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(industry_page_loot,"mainhome.html");
@@ -82,6 +83,7 @@ app.get('/', (req, res) => { //기업 소개 페이지
 
     res.send(page);
 });
+//소프트오아시스 기업 소개 페이지
 app.get('/industryinfo', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(industry_page_loot,"mainhome.html");
@@ -89,6 +91,7 @@ app.get('/industryinfo', (req, res) => { //기업 소개 페이지
 
     res.send(page);
 });
+//소프트오아시스 프로젝트 페이지
 app.get('/projectinfo', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(industry_page_loot,"projectinfo.html");
@@ -96,7 +99,27 @@ app.get('/projectinfo', (req, res) => { //기업 소개 페이지
 
     res.send(page);
 });
+app.get('/developerHR', (req, res) => { //기업 소개 페이지
+    let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(industry_page_loot,"developerHR.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
 
+    res.send(page);
+});
+app.get('/partnerindustry', (req, res) => { //기업 소개 페이지
+    let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(industry_page_loot,"partnerindustry.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
+
+    res.send(page);
+});
+app.get('/teamhuman', (req, res) => { //기업 소개 페이지
+    let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(industry_page_loot,"teamhuman.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
+
+    res.send(page);
+});
 
 //메타커머스E 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 app.get('/mataCommerce', (req, res) => { //기업 소개 페이지
@@ -140,15 +163,17 @@ app.get('/seller', (req, res) => {
 
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(seller_page_loot,"mainhome.html");
+    let Readpage_tk = path.join(seller_page_loot,"sellerintro.html");
 
     if(tk != null){
         page = applyPageToTemplate(Readtamplate,Readpage);
-        
+        res.send(page);
     }
-    else{
-        page = applyPageToTemplate(Readtamplate,Readpage);
+    else{//토큰이 없는경우
+        page = readfile(Readpage_tk);
+        res.send(page);
     }
-    res.send(page);
+    
 });
 //판매자 로그인 페이지
 app.get('/sellerlogin', (req, res) => {
@@ -164,7 +189,6 @@ app.get('/sellerchat', (req, res) => {
     let Readpage = path.join(page_loot,"seller","page","review_chat.html");
 
     page = applyPageToTemplate(Readtamplate,Readpage);
-
 
     res.send(page);
 });
@@ -451,6 +475,9 @@ app.get('/admin', (req, res) => {
 
     res.send(page);
 });
+
+
+
 //토탈 기능(모든 홈페이지적용 가능한 api및 기능)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 app.post('/login_pass', async (req, res) => {
     const { email, password } = req.body;
