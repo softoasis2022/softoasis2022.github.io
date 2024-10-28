@@ -20,8 +20,6 @@ const querystring = require('querystring');
 const app = express();
 
 //프로그램 오류로 주석 처리 구동 완료 확인ㄴ
-const db = require('./route/user');
-db.connect();
 
 const PORT = 80;
 
@@ -662,4 +660,3 @@ const productList = products.map(product => `
     </div>
 `).join('');
 */
-
