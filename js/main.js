@@ -176,6 +176,12 @@ app.get('/mataCommerceRegister', (req, res) => { //기업 소개 페이지
     
     res.send(page);
 });
+app.post('/productrecommend', async (req, res) => {
+    const { id, password, } = req.body;
+    productrecommend();
+    res.status(200).json({ token: "회원가입 완료" });
+    
+});
 app.post('/userinfo', async (req, res) => {
     const { id, password, } = req.body;
     try {
@@ -187,6 +193,10 @@ app.post('/userinfo', async (req, res) => {
         res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
     }
 });
+function productrecommend(){
+    let product={};
+    
+}
 
 //판매자 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 

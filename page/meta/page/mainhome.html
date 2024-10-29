@@ -11,4 +11,62 @@
             <p><a class="btn btn-primary" href="/api/products">상품 목록 보기</a></p>
         </div>
     </div>
+    <div style="display: flex; justify-content: center; width: 100%; height: fit-content;">
+        <style>
+            #product1{
+                width: 300px;
+                height: fit-content;
+            }
+        </style>
+        <div id="productlist">
+            <div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div id="productlist"></div>
+        <div id="productlist"></div>
+    </div>
+    <script>
+        fetch('/join_pass', {
+                method: 'POST', // POST 요청을 사용
+                headers: {'Content-Type': 'application/json' // 요청의 본문이 JSON 형태임을 명시
+                },
+                body: JSON.stringify({
+                    
+                })
+                })
+                .then(response => response.json()) // 서버로부터의 응답을 JSON 형태로 파싱
+                .then(data => {
+                    if (data.token == 'no_user') {
+                        alert("아이디 또는 비밀번호를 확인해 주세요");
+                        console.log(data.token);
+                    }
+                    else{
+                        //window.location.href = `/mataCommerce?token=${data.token}`;
+                        console.log(data.token);
+                    }
+                })
+                .catch(error => console.error('Error:', error)); // 에러가 발생한 경우 콘솔에 에러를 출력
+    </script>
 </div>
