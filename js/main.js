@@ -229,7 +229,7 @@ app.get('/sellerlogin', (req, res) => {
     let Readpage = path.join(seller_page_loot,"login","sellerlogin.html");
     res.send(page);
 });
-app.get('/sellerlogin', (req, res) => {
+app.get('/sellerregister', (req, res) => {
     let Readpage = path.join(seller_page_loot,"register","sellerregister.html");
     res.send(Readpage);
 });
