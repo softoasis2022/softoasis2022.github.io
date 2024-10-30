@@ -238,11 +238,13 @@ app.get('/sellerlogin', (req, res) => {
     //파일이름은 "방금 전 생성한 문자열.json 으로 파일 생성"
     //script테그에 토큰값을 입혀서 응답
     let Readpage = path.join(seller_page_loot,"login","sellerlogin.html");
-    res.send(Readpage);
+    page = readfile(Readpage);
+    res.send(page);
 });
 app.get('/sellerregister', (req, res) => {
     let Readpage = path.join(seller_page_loot,"register","sellerregister.html");
-    res.send(Readpage);
+    page = readfile(Readpage);
+    res.send(page);
 });
 app.get('/sellerchat', (req, res) => {
     let page ;
