@@ -218,13 +218,9 @@ app.get('/seller', (req, res) => {
         console.log(tk);
 
         //셀러 정보를 받아온다
+        page = applyPageToTemplate(Readtamplate,Readpage);
+        res.send(page);
 
-        if(tk == "axfgwjicgxmawjxgoahvroavga"){
-            page = applyPageToTemplate(Readtamplate,Readpage);
-            res.send(page);
-        }
-        else{
-        }
         
     }
     else{//토큰이 없는경우
