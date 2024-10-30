@@ -255,7 +255,7 @@ app.get('/sellerchat', (req, res) => {
 });
 
 app.get('/sellerproductfind', (req, res) => {
-    let page ;
+    let page;
     let Readtamplate = path.join(seller_page_loot,"tamplate",`tamplate_0_0_1.html`);
     let Readpage = path.join(seller_page_loot,"page","review_chat.html");
 
