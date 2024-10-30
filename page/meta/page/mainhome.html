@@ -23,7 +23,7 @@
         #common-floor-top {
             width: 1280px;
             height: 618.83px;
-            background-color: white;
+            background-color: #f8f9fa;
             
             display: inline-flex;
             justify-content: space-between;
@@ -76,25 +76,23 @@
             border: 1px solid yellowgreen;
             margin-top: 20px;
         }
-        #common-floor-middle {
-            width: 1280px;
+        .common-floor-middle {
+            margin-bottom: 20px; /* 각 슬라이더 간의 간격 */
+        }
 
-            background-color: gray;
-        }
-        #middle-title {
-            width: 1280px;
-            height: 36px;
+        .middle-title {
             text-align: left;
+            margin-bottom: 10px; /* 타이틀과 슬라이더 간의 간격 */
         }
-        #slider-container {
+
+        .slider-container {
             display: flex;
             align-items: center;
-            width: 100%;
+            position: relative; /* 버튼을 절대 위치로 설정하기 위해 필요 */
             overflow: hidden;
-            position: relative;
         }
 
-        #slider {
+        .slider {
             display: flex;
             transition: transform 0.3s ease;
         }
@@ -108,10 +106,10 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2em;
-            background-color: #f0f0f0;
+            background-color: #f8f9fa;
         }
 
-        #prev-button, #next-button {
+        .prev-button, .next-button {
             background-color: #333;
             color: white;
             border: none;
@@ -119,56 +117,118 @@
             cursor: pointer;
             font-size: 1.5em;
             transition: background-color 0.3s;
-            position: absolute; /* 버튼을 절대 위치로 설정 */
-            top: 50%; /* 버튼을 세로 중앙에 배치 */
-            transform: translateY(-50%); /* 버튼 중앙 정렬 */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        #prev-button {
-            left: 10px; /* 왼쪽 버튼의 위치 */
+        .prev-button {
+            left: 10px;
         }
 
-        #next-button {
-            right: 10px; /* 오른쪽 버튼의 위치 */
+        .next-button {
+            right: 10px;
         }
 
-        #prev-button:hover, #next-button:hover {
+        .prev-button:hover, .next-button:hover {
             background-color: #555; /* 버튼 호버 효과 */
+        }
+
+        #common-floor-bottom {
+            width: 1280px;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        #bottom-title {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        #recommend-product {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .recommend-item {
+            width: 214px;
+            height: 338.31px;
+            margin: 10px; 
+            border: 1px solid black;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
     </style>
     <div id="wrap">
-            <div id="common-floor-top">
-                <div id="left">
-                    <div id="lgh-contain">
-                        <span id="login" onclick="location.href='/mataCommerceLogin'">
-                            로그인
-                        </span>
-                        <span id="register" onclick="location.href='/mataCommerceRegister'">
-                            회원가입
-                        </span>
-                    </div>
-                    <div id="vertical-small-card">이벤트1</div>
+        <div id="common-floor-top">
+            <div id="left">
+                <div id="lgh-contain">
+                    <span id="login" onclick="location.href='/mataCommerceLogin'">
+                        로그인
+                    </span>
+                    <span id="register" onclick="location.href='/mataCommerceRegister'">
+                        회원가입
+                    </span>
                 </div>
-                <div id="vertical-big-card">이벤트2</div>
-                <div id="right">
-                    <div id="horizontal-big-card">이벤트3</div>
-                    <div id="horizontal-small-card">이벤트4</div>
-                </div>
+                <div id="vertical-small-card">신규 유저 할인</div>
             </div>
-            <div id="common-floor-middle">
-                <div id="middle-title">타이틀</div>
-                <div id="slider-container">
-                    <button id="prev-button">〈</button>
-                    <div id="slider">
-                        <div class="slider-item" id="main-card">이벤트</div>
-                        <div class="slider-item" id="item1">상품 1</div>
-                        <div class="slider-item" id="item2">상품 2</div>
-                        <div class="slider-item" id="item3">상품 3</div>
-                        <div class="slider-item" id="item4">상품 4</div>
-                        <div class="slider-item" id="item5">상품 5</div>
-                    </div>
-                    <button id="next-button">〉</button>
-                </div>
+            <div id="vertical-big-card">선착순 할인</div>
+            <div id="right">
+                <div id="horizontal-big-card">천원샵</div>
+                <div id="horizontal-small-card">특별 할인</div>
             </div>
         </div>
+        
+        <div class="common-floor-middle">
+            <div class="middle-title"><h2>빅세일</h2></div>
+            <div class="slider-container">
+                <button class="prev-button">〈</button>
+                <div class="slider">
+                    <div class="slider-item main-card">빅 세일</div>
+                    <div class="slider-item">마우스</div>
+                    <div class="slider-item">드라이기</div>
+                    <div class="slider-item">간의 의자</div>
+                    <div class="slider-item">멀티탭</div>
+                    <div class="slider-item">욕실 타월</div>
+                </div>
+                <button class="next-button">〉</button>
+            </div>
+        </div>
+        
+        <div class="common-floor-middle">
+            <div class="middle-title"><h2>7일 배송</h2></div>
+            <div class="slider-container">
+                <button class="prev-button">〈</button>
+                <div class="slider">
+                    <div class="slider-item fast-main-card">7일 배송</div>
+                    <div class="slider-item">리모콘</div>
+                    <div class="slider-item">원피스</div>
+                    <div class="slider-item">다기능 가방</div>
+                    <div class="slider-item">니트</div>
+                    <div class="slider-item">에코백</div>
+                </div>
+                <button class="next-button">〉</button>
+            </div>
+        </div>
+
+        <div id="common-floor-bottom">
+            <div id="bottom-title"><h2>추천 상품</h2></div>
+            <div id="recommend-product">
+                <div class="recommend-item">
+                    상품
+                </div>
+                <div class="recommend-item">상품</div>
+                <div class="recommend-item">상품</div>
+                <div class="recommend-item">상품</div>
+                <div class="recommend-item">상품</div>
+                <div class="recommend-item">상품</div>
+                <div class="recommend-item">상품</div>
+                <div class="recommend-item">상품</div>
+                <div class="recommend-item">상품</div>
+            </div>
+        </div>
+    </div>
 </div>
