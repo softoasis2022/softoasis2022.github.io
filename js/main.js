@@ -208,7 +208,7 @@ function productrecommend(){
 
 //판매자 기본 메인 페이지
 app.get('/seller', (req, res) => {
-    const tk = req.query.tk;
+    const { tk } = req.body;
 
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(seller_page_loot,"page","mainhome.html");
@@ -226,6 +226,12 @@ app.get('/seller', (req, res) => {
 });
 //판매자 로그인 페이지
 app.get('/sellerlogin', (req, res) => {
+
+    //로그인기능
+    //아이디와 페스워드 확인 후
+    //로그인 기간과 랜덤문자열을 합한 50개의 문자열을 만듬
+    //파일이름은 "방금 전 생성한 문자열.json 으로 파일 생성"
+    //script테그에 토큰값을 입혀서 응답
     let Readpage = path.join(seller_page_loot,"login","sellerlogin.html");
     res.send(page);
 });
