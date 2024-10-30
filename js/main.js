@@ -255,7 +255,6 @@ app.get('/sellerchat', (req, res) => {
 
     res.send(page);
 });
-
 app.get('/sellerproductfind', (req, res) => {
     let page;
     let Readtamplate = path.join(seller_page_loot,"tamplate",`tamplate_0_0_1.html`);
@@ -282,8 +281,6 @@ app.post('/', async (req, res) => {
         res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
     }
 });
-
-//판매자센터ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 app.post('/chat', (req, res) => {
     const { action,fromuser,touser,chat } = req.body;
     if(action=="start_storechat"){
@@ -330,6 +327,24 @@ app.post('/nullapi', async (req, res) => {
         //const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
         //console.log(token);
         res.status(200).json({ token: "회원가입 완료" });  // 토큰을 응답으로 보냅니다.
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
+    }
+});
+
+//가상 기능
+app.post('/order', async (req, res) => {
+    const { id, password } = req.body;
+
+    
+
+    try {
+        //const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        //console.log(token);
+        res.status(200).json(
+            { token: "회원가입 완료" }
+        );  // 토큰을 응답으로 보냅니다.
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
