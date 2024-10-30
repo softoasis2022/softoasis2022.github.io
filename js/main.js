@@ -214,7 +214,7 @@ app.get('/seller', (req, res) => {
     let Readpage = path.join(seller_page_loot,"page","mainhome.html");
     let Readpage_tk = path.join(seller_page_loot,"page","sellerintro.html");
 
-    if(tk == null){
+    if(tk != null){
         console.log(tk);
 
         //셀러 정보를 받아온다
@@ -262,7 +262,7 @@ app.get('/sellerproductfind', (req, res) => {
     page = applyPageToTemplate(Readtamplate,Readpage);
     res.send(page);
 });
-app.get('/sellerproductset', (req, res) => {
+app.get('/sellerproductregister', (req, res) => {
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(seller_page_loot,"page","mainhome.html");
     
