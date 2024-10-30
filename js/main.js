@@ -266,7 +266,7 @@ app.get('/sellerproductfind', (req, res) => {
 });
 app.get('/sellerproductregister', (req, res) => {
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(seller_page_loot,"page","mainhome.html");
+    let Readpage = path.join(seller_page_loot,"page","productregister.html");
     
     page = applyPageToTemplate(Readtamplate,Readpage);
     res.send(page);
