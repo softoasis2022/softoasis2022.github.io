@@ -1,0 +1,117 @@
+<div id="mainpage">
+    <style>
+        #buisness{
+            width: 100%;
+            height: fit-content;
+            justify-content: center;
+            display: block;
+        }
+        #warp_main_buisness{
+            width: fit-content;
+            height: fit-content;
+        }
+        #warp_input_buisness{
+            width: fit-content;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <div id="buisness">
+        <div id="warp_main_buisness">
+            <div id="warp_input_buisness">
+                <div style="width: 300px; height: 70px;">
+                    <p style="font-size: 20px;">
+                        기업 이름 또는 단체 이름
+                    </p>
+                </div>
+                <div style="padding: 20px;">
+                    <input style="width: 400px; height: 50px;" id="industry_name">
+                </div>
+            </div>
+            <div id="warp_input_buisness">
+                <div style="width: 300px; height: 70px;">
+                    <p style="font-size: 20px;">기업 주소</p>
+                </div>
+                <div style="padding: 20px;">
+                    <input style="width: 400px; height: 50px; font-size: medium;" id="industry_address">
+                </div>
+            </div>
+            <div id="warp_input_buisness">
+                <div style="width: 300px; height: 70px;">
+                    <p style="font-size: 20px;">사업 분야</p>
+                </div>
+                <div style="padding: 20px;">
+                    <input style="width: 400px; height: 50px; font-size: medium;" id="industry_area">
+                </div>
+            </div>
+            <div id="warp_input_buisness">
+                <div style="width: 300px; height: 70px;">
+                    <p style="font-size: 20px;">
+                        전화 번호
+                    </p>
+                </div>
+                <div style="padding: 20px; display: flex; ">
+                    <input style="width: 400px; height: 50px; font-size: medium;" id="industry_phonebnumber">
+                    <input style="width: 400px; height: 50px; font-size: medium; margin-left: 20px;" id="industry_phonebnumber">
+                    <input style="width: 400px; height: 50px; font-size: medium; margin-left: 20px;" id="industry_phonebnumber">
+                </div>
+            </div>
+            <div id="warp_input_buisness">
+                <div style="width: 300px; height: 70px;">
+                    <p style="font-size: 20px;">
+                        대표님 이름
+                    </p>
+                </div>
+                <div style="padding: 20px; display: flex; ">
+                    <input style="width: 400px; height: 50px; font-size: medium;" id="industry_readername">
+                </div>
+            </div>
+            <div id="warp_input_buisness">
+                <div style="width: 300px; height: 70px;">
+                    <p style="font-size: 20px;">
+                        이메일
+                    </p>
+                </div>
+                <div style="padding: 20px; display: flex; ">
+                    <input style="width: 400px; height: 50px; font-size: medium;" id="industry_readername">
+                </div>
+            </div>
+            <div id="warp_input_buisness">
+                <div style="width: 300px; height: 70px;">
+                    <p style="font-size: 20px;">
+                        담장자 이름
+                    </p>
+                </div>
+                <div style="padding: 20px; display: flex; ">
+                    <input style="width: 400px; height: 50px; font-size: medium;" id="industry_readername">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div onclick="inputdata()">
+                <button>
+                    입력 완료
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function inputdata(){
+        //입력 완료시 데이터 읽기
+        let Industry_name = document.getElementById("industry_name").value;
+        
+        
+        console.log(Industry_name);
+
+        //기업이름
+        //분야
+        //대표님 성함
+        //사업자등록 번호
+        //사업 소제지
+        //담당자이름
+        //담장자 전화번호
+        //
+    }
+</script>

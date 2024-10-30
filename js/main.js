@@ -153,7 +153,13 @@ app.get('/teamhuman', (req, res) => { //기업 소개 페이지
 
     res.send(page);
 });
+app.get('/buisness', (req, res) => { //기업 소개 페이지
+    let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(industry_page_loot,"buisness.html");
+    page = applyPageToTemplate(Readtamplate,Readpage);
 
+    res.send(page);
+});
 //메타커머스E 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 app.get('/mataCommerce', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
