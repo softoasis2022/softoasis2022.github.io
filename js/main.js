@@ -111,7 +111,7 @@ app.post('/adminmember', async (req, res) => {
 //소프트오아시스 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 app.get('/', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(industry_page_loot,"mainhome.html");
+    let Readpage = path.join(industry_page_loot,"page","mainhome.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
 
     res.send(page);
@@ -119,7 +119,7 @@ app.get('/', (req, res) => { //기업 소개 페이지
 //소프트오아시스 기업 소개 페이지
 app.get('/industryinfo', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(industry_page_loot,"mainhome.html");
+    let Readpage = path.join(industry_page_loot,"page","mainhome.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
 
     res.send(page);
@@ -127,35 +127,35 @@ app.get('/industryinfo', (req, res) => { //기업 소개 페이지
 //소프트오아시스 프로젝트 페이지
 app.get('/projectinfo', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(industry_page_loot,"projectinfo.html");
+    let Readpage = path.join(industry_page_lootc,"projectinfo.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
 
     res.send(page);
 });
 app.get('/developerHR', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(industry_page_loot,"developerHR.html");
+    let Readpage = path.join(industry_page_loot,"page","developerHR.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
 
     res.send(page);
 });
 app.get('/partnerindustry', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(industry_page_loot,"partnerindustry.html");
+    let Readpage = path.join(industry_page_loot,"page","partnerindustry.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
 
     res.send(page);
 });
 app.get('/teamhuman', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(industry_page_loot,"teamhuman.html");
+    let Readpage = path.join(industry_page_loot,"page","teamhuman.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
 
     res.send(page);
 });
 app.get('/buisness', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(industry_page_loot,"buisness.html");
+    let Readpage = path.join(industry_page_loot,"page","buisness.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
 
     res.send(page);
@@ -163,21 +163,21 @@ app.get('/buisness', (req, res) => { //기업 소개 페이지
 //메타커머스E 페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 app.get('/mataCommerce', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(meta_page_loot,"mainhome.html");
+    let Readpage = path.join(meta_page_loot,"page","mainhome.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
     
     res.send(page);
 });
 app.get('/mataCommerceLogin', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(meta_page_loot,"login.html");
+    let Readpage = path.join(meta_page_loot,"page","login.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
     
     res.send(page);
 });
 app.get('/mataCommerceRegister', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(meta_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(meta_page_loot,"register.html");
+    let Readpage = path.join(meta_page_loot,"page","register.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
     
     res.send(page);
@@ -226,11 +226,12 @@ app.get('/seller', (req, res) => {
 });
 //판매자 로그인 페이지
 app.get('/sellerlogin', (req, res) => {
-    let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(seller_page_loot,"mainhome.html");
-    
-    page = applyPageToTemplate(Readtamplate,Readpage);
+    let Readpage = path.join(seller_page_loot,"login","sellerlogin.html");
     res.send(page);
+});
+app.get('/sellerlogin', (req, res) => {
+    let Readpage = path.join(seller_page_loot,"register","sellerregister.html");
+    res.send(Readpage);
 });
 app.get('/sellerchat', (req, res) => {
     let page ;
@@ -251,7 +252,7 @@ app.get('/sellerproductfind', (req, res) => {
 });
 app.get('/sellerproductset', (req, res) => {
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(seller_page_loot,"mainhome.html");
+    let Readpage = path.join(seller_page_loot,"page","mainhome.html");
     
     page = applyPageToTemplate(Readtamplate,Readpage);
     res.send(page);
