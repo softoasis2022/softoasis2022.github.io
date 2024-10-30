@@ -31,16 +31,16 @@ const page_loot = path.join(__dirname,"/../page");
 const admin_data = path.join(data_base,"admin");
 
 //html 정보가 저장된 루트
-const seller_page_loot = path.join(page_loot,"seller","page");
+const seller_page_loot = path.join(page_loot,"seller");
 const seller_pagetaplate_loot = path.join(page_loot,"seller","tamplate");
 
-const meta_page_loot = path.join(page_loot,"meta","page");
+const meta_page_loot = path.join(page_loot,"meta");
 const meta_pagetamplate_loot = path.join(page_loot,"meta","tamplate");
 
-const industry_page_loot = path.join(page_loot,"industry","page");
+const industry_page_loot = path.join(page_loot,"industry");
 const industry_pagetamplate_loot = path.join(page_loot,"industry","tamplate");
 
-const admin_page_loot = path.join(page_loot,"admin","page");
+const admin_page_loot = path.join(page_loot,"admin");
 const admin_pagetamplate_loot = path.join(page_loot,"admin","tamplate");
 
 const versionfilePath = path.join(__dirname,"/../version","page.json");
@@ -241,7 +241,7 @@ app.get('/sellerchat', (req, res) => {
 
     res.send(page);
 });
-app.get('/productfind', (req, res) => {
+app.get('/sellerproductfind', (req, res) => {
     let page ;
     let Readtamplate = path.join(page_loot,"seller","tamplate",`tamplate_0_0_1.html`);
     let Readpage = path.join(page_loot,"seller","page","review_chat.html");
@@ -249,260 +249,25 @@ app.get('/productfind', (req, res) => {
     page = applyPageToTemplate(Readtamplate,Readpage);
     res.send(page);
 });
-// 상품 등록 폼 페이지 seller
-app.get('/productregister', (req, res) => {
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="ko">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-            <title>상품 등록</title>
-            <style>
-                body {
-                    background-color: #f8f9fa;
-                }
-                .container {
-                    margin-top: 20px;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>상품 등록하기</h1>
-                <form action="/api/products" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="name">이름:</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">설명:</label>
-                        <input type="text" name="description" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="price">가격:</label>
-                        <input type="number" name="price" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="image">이미지:</label>
-                        <input type="file" name="image" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">등록</button>
-                </form>
-                <p><a href="/">홈으로</a></p>
-            </div>
-        </body>
-        </html>
-    `);
+app.get('/sellerproductset', (req, res) => {
+    let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
+    let Readpage = path.join(seller_page_loot,"mainhome.html");
+    
+    page = applyPageToTemplate(Readtamplate,Readpage);
+    res.send(page);
 });
-// 상품 등록 엔드포인트 seller
-app.post('/api/products', upload.single('image'), (req, res) => {
-    const { name, description, price } = req.body;
-
-    if (!name || !description || !price || !req.file) {
-        return res.status(400).json({ message: '이름, 설명, 가격, 이미지를 모두 입력해주세요.' });
-    }
-
-    const newProduct = {
-        id: products.length + 1,
-        이름: name,
-        설명: description,
-        가격: parseFloat(price),
-        이미지: `/uploads/${req.file.filename}`,
-    };
-    products.push(newProduct);
-
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="ko">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-            <title>상품 등록 완료</title>
-            <style>
-                body {
-                    background-color: #f8f9fa;
-                }
-                .container {
-                    margin-top: 20px;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1 class="text-center">상품 등록 완료</h1>
-                <div class="alert alert-success" role="alert">
-                    상품이 성공적으로 등록되었습니다.
-                </div>
-                <div class="card mb-4 shadow-sm">
-                    <img src="${newProduct.이미지}" alt="${newProduct.이름}" class="card-img-top" style="max-width: 200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">${newProduct.이름}</h5>
-                        <p class="card-text">${newProduct.설명}</p>
-                        <p class="card-text">가격: ${newProduct.가격}원</p>
-                    </div>
-                </div>
-                <p><a href="/api/products" class="btn btn-primary">상품 목록으로 돌아가기</a></p>
-                <p><a href="/register" class="btn btn-secondary">상품 등록하기</a></p>
-                <p><a href="/" class="btn btn-link">홈으로</a></p>
-            </div>
-        </body>
-        </html>
-    `);
-});
-// 상품 목록 조회 엔드포인트 seller
-app.get('/api/products', (req, res) => {
-    const productList = products.map(product => `
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img src="${product.이미지}" class="card-img-top" alt="${product.이름}">
-                <div class="card-body">
-                    <h5 class="card-title">${product.이름}</h5>
-                    <p class="card-text">${product.설명}</p>
-                    <p class="card-text">가격: ${product.가격}원</p>
-                    <form action="/api/cart/add" method="POST" style="display:inline;">
-                        <input type="hidden" name="productId" value="${product.id}">
-                        <button type="submit" class="btn btn-success">장바구니에 추가</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    `).join('');
-
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="ko">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-            <title>상품 목록</title>
-            <style>
-                body {
-                    background-color: #f8f9fa;
-                }
-                .container {
-                    margin-top: 20px;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1 class="text-center">상품 목록</h1>
-                <div class="row">
-                    ${productList || '<p>등록된 상품이 없습니다.</p>'}
-                </div>
-                <p><a href="/">홈으로</a></p>
-            </div>
-        </body>
-        </html>
-    `);
-});
-// 장바구니에 상품 추가 meta
-app.post('/api/cart/add', (req, res) => {
-    const { productId } = req.body;
-    const product = products.find(p => p.id == productId);
-
-    if (product) {
-        cart.push(product);
-        res.send(`
-            <h1>장바구니에 추가되었습니다!</h1>
-            <p>${product.이름}이(가) 장바구니에 추가되었습니다.</p>
-            <p><a href="/api/products">상품 목록으로 돌아가기</a></p>
-            <p><a href="/">홈으로</a></p>
-        `);
-    } else {
-        return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
+app.post('/', async (req, res) => {
+    const { id, password, } = req.body;
+    try {
+        //const token = await userlogin(email, password);  // userlogin 함수가 반환하는 Promise를 기다립니다.
+        //console.log(token);
+        res.status(200).json({ token: "회원가입 완료" });  // 토큰을 응답으로 보냅니다.
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });  // 에러가 발생하면 에러 메시지를 응답으로 보냅니다.
     }
 });
-// 장바구니 조회 엔드포인트 meta
-app.get('/cart', (req, res) => {
-    if (cart.length === 0) {
-        return res.send(`
-            <!DOCTYPE html>
-            <html lang="ko">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-                <title>장바구니</title>
-                <style>
-                    body {
-                        background-color: #f8f9fa;
-                    }
-                    .container {
-                        margin-top: 20px;
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="container">
-                    <h1>장바구니가 비어 있습니다.</h1>
-                    <p><a href="/">홈으로</a></p>
-                </div>
-            </body>
-            </html>
-        `);
-    }
 
-    const cartList = cart.map(product => `
-        <li class="list-group-item">
-            <strong>${product.이름}</strong><br>
-            설명: ${product.설명}<br>
-            가격: ${product.가격}원<br>
-            <img src="${product.이미지}" alt="${product.이름}" style="max-width: 100px;">
-        </li>
-    `).join('');
-
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="ko">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-            <title>장바구니</title>
-            <style>
-                body {
-                    background-color: #f8f9fa;
-                }
-                .container {
-                    margin-top: 20px;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>장바구니</h1>
-                <ul class="list-group">
-                    ${cartList}
-                </ul>
-                <p><a href="/">홈으로</a></p>
-            </div>
-        </body>
-        </html>
-    `);
-});
-// 상품 등록 폼 페이지 
-app.get('/register', (req, res) => {
-    res.send(`
-        <h1>상품 등록하기</h1>
-        <form action="/api/products" method="POST" enctype="multipart/form-data">
-            <label for="name">이름:</label>
-            <input type="text" name="name" required><br>
-            <label for="description">설명:</label>
-            <input type="text" name="description" required><br>
-            <label for="price">가격:</label>
-            <input type="number" name="price" required><br>
-            <label for="image">이미지:</label>
-            <input type="file" name="image" required><br>
-            <button type="submit">등록</button>
-        </form>
-        <p><a href="/">홈으로</a></p>
-    `);
-});
 //판매자센터ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 app.post('/chat', (req, res) => {
     const { action,fromuser,touser,chat } = req.body;
@@ -657,22 +422,3 @@ function ReadFile(filePath) {
 app.listen(PORT, () => {
     console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`);
 });
-
-/*   기존 루트 "/"
-const productList = products.map(product => `
-    <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
-            <img src="${product.이미지}" class="card-img-top" alt="${product.이름}">
-            <div class="card-body">
-                <h5 class="card-title">${product.이름}</h5>
-                <p class="card-text">${product.설명}</p>
-                <p class="card-text">가격: ${product.가격}원</p>
-                <form action="/api/cart/add" method="POST" style="display:inline;">
-                    <input type="hidden" name="productId" value="${product.id}">
-                    <button type="submit" class="btn btn-success">장바구니에 추가</button>
-                </form>
-            </div>
-        </div>
-    </div>
-`).join('');
-*/
