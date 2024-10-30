@@ -208,13 +208,23 @@ function productrecommend(){
 
 //판매자 기본 메인 페이지
 app.get('/seller', (req, res) => {
-    const { tk } = req.body;
+    const { tk } = req.query;
 
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(seller_page_loot,"page","mainhome.html");
     let Readpage_tk = path.join(seller_page_loot,"page","sellerintro.html");
 
     if(tk != null){
+        console.log(tk);
+
+        //셀러 정보를 받아온다
+
+        if(tk == "axfgwjicgxmawjxgoahvroavga"){
+            console.log("일치하지않습니다");
+        }
+        else{
+            
+        }
         page = applyPageToTemplate(Readtamplate,Readpage);
         res.send(page);
     }
@@ -248,6 +258,7 @@ app.get('/sellerchat', (req, res) => {
 
     res.send(page);
 });
+
 app.get('/sellerproductfind', (req, res) => {
     let page ;
     let Readtamplate = path.join(seller_page_loot,"tamplate",`tamplate_0_0_1.html`);
