@@ -1,0 +1,106 @@
+<div id="mainpage">
+
+</div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>주문 조회</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">주문 조회하기</h1>
+
+        <!-- 주문 목록 -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>상품 주문 번호</th>
+                    <th>주문 번호</th>
+                    <th>주문 일시</th>
+                    <th>주문 상태</th>
+                    <th>배송 속성</th>
+                    <th>상품명</th>
+                    <th>상품 번호</th>
+                    <th>상품 수량</th>
+                    <th>수취인명</th>
+                </tr>
+            </thead>
+            <tbody id="orderList">
+                <!-- 동적으로 추가될 주문 목록 -->
+            </tbody>
+        </table>
+
+        <p><a class="btn btn-primary" href="/">홈으로</a></p>
+    </div>
+
+    <script>
+        // 주문 데이터
+        const orderData = {
+            state: "결제완료",
+            productordernumber: "2024103112345678",
+            ordernumber: "2024103112345678",
+            ordertime: "2024.10.31 03:06:23",
+            delivery: "일반배송",
+            productnumber: "xefaklo",
+            productname: "원두",
+            count: 1,
+            ordername: "한민섭"
+        };
+
+        // 주문 목록 업데이트
+        const orderList = document.getElementById('orderList');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${orderData.productordernumber}</td>
+            <td>${orderData.ordernumber}</td>
+            <td>${orderData.ordertime}</td>
+            <td>${orderData.state}</td>
+            <td>${orderData.delivery}</td>
+            <td>${orderData.productname}</td>
+            <td>${orderData.productnumber}</td>
+            <td>${orderData.count}</td>
+            <td>${orderData.ordername}</td>
+        `;
+        orderList.appendChild(row);
+    </script>
+</body>
+</html>
+<script>
+    window.onload = function() {
+        // 화면이 로드되면 실행될 코드
+        alert("화면이 로드되었습니다!"); // 예시: 알림창을 띄움
+        // 추가로 실행할 코드들 작성
+        console.log(document.getElementsByTagName("title"));
+        let storenumber = document.getElementsByTagName("title")
+
+        //찾은 타이틀 테그에
+
+        dataget(storenumber)
+    };
+    function dataget(storenumber){
+        fetch('/order', {
+                method: 'POST', // POST 요청을 사용
+                headers: {'Content-Type': 'application/json' // 요청의 본문이 JSON 형태임을 명시
+                },
+                body: JSON.stringify({
+                    id : input_id, // 이메일 데이터
+                    password: input_pw // 비밀번호 데이터
+                })
+                })
+                .then(response => response.json()) // 서버로부터의 응답을 JSON 형태로 파싱
+                .then(data => {
+                    if (data.token == 'no_user') {
+                        alert("아이디 또는 비밀번호를 확인해 주세요");
+                        console.log(data.token);
+                    }
+                    else{
+                        window.location.href = //mataCommerce?token=${data.token};
+                        console.log(data.token);
+                    }
+                })
+                .catch(error => console.error('Error:', error)); // 에러가 발생한 경우 콘솔에 에러를 출력
+    }
+</script>
