@@ -211,7 +211,7 @@ app.get('/seller', (req, res) => {
     const tk = req.query.tk;
 
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(seller_page_loot,"mainhome.html");
+    let Readpage = path.join(seller_page_loot,"page","mainhome.html");
     let Readpage_tk = path.join(seller_page_loot,"sellerintro.html");
 
     if(tk != null){
@@ -244,8 +244,8 @@ app.get('/sellerchat', (req, res) => {
 });
 app.get('/sellerproductfind', (req, res) => {
     let page ;
-    let Readtamplate = path.join(page_loot,"seller","tamplate",`tamplate_0_0_1.html`);
-    let Readpage = path.join(page_loot,"seller","page","review_chat.html");
+    let Readtamplate = path.join(seller_page_loot,"tamplate",`tamplate_0_0_1.html`);
+    let Readpage = path.join(seller_page_loot,"page","review_chat.html");
 
     page = applyPageToTemplate(Readtamplate,Readpage);
     res.send(page);
