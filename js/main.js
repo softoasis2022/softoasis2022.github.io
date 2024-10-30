@@ -127,7 +127,7 @@ app.get('/industryinfo', (req, res) => { //기업 소개 페이지
 //소프트오아시스 프로젝트 페이지
 app.get('/projectinfo', (req, res) => { //기업 소개 페이지
     let Readtamplate = path.join(industry_pagetamplate_loot,"tamplate_0_0_1.html");
-    let Readpage = path.join(industry_page_lootc,"projectinfo.html");
+    let Readpage = path.join(industry_page_loot,"page","projectinfo.html");
     page = applyPageToTemplate(Readtamplate,Readpage);
 
     res.send(page);
