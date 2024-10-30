@@ -212,7 +212,7 @@ app.get('/seller', (req, res) => {
 
     let Readtamplate = path.join(seller_pagetaplate_loot,"tamplate_0_0_1.html");
     let Readpage = path.join(seller_page_loot,"page","mainhome.html");
-    let Readpage_tk = path.join(seller_page_loot,"sellerintro.html");
+    let Readpage_tk = path.join(seller_page_loot,"page","sellerintro.html");
 
     if(tk != null){
         page = applyPageToTemplate(Readtamplate,Readpage);
