@@ -214,7 +214,7 @@ app.get('/seller', (req, res) => {
     let Readpage = path.join(seller_page_loot,"page","mainhome.html");
     let Readpage_tk = path.join(seller_page_loot,"page","sellerintro.html");
 
-    if(tk != null){
+    if(tk == null){
         console.log(tk);
 
         //셀러 정보를 받아온다
