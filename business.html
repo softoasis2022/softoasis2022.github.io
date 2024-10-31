@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main_styles.css">
+    <link rel="stylesheet" href="css/business_styles.css">
+    <title>소프트오아시스</title>
+</head>
+<body>
+    <header class="header" id="header">
+        <a href="/main.html">
+            <img class="logo" src="img/logo.png" alt="기업 로고" id="logo"/>
+        </a>
+        <nav class="nav">
+            <ul>
+                <ul>
+                    <li><a href="/main.html" class="nav-link">HOME</a></li>
+                    <li><a href="/company.html" class="nav-link">COMPANY</a></li>
+                    <li><a href="/business.html" class="nav-link">BUSINESS</a></li>
+                    <li><a href="/employee.html" class="nav-link">EMPLOYEE</a></li>
+                </ul>
+            </ul>
+        </nav>
+    </header>
+
+    <header class="board">
+        <canvas id="canvas"></canvas>
+        <h1>메타커머스 E</h1>
+        <button class="custom-button">+ MORE</button>
+    </header>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+                "GLTFLoader": "https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js",
+                "OrbitControls": "https://unpkg.com/three@0.141.0/examples/jsm/controls/OrbitControls.js"
+            }
+        }
+    </script>
+
+    <script type="module" src="JS/Three_choco.js"></script>
+    <script src="JS/main.js"></script>
+    <br>
+    <div id = "black-Line">
+        <br><br><br>
+    </div>
+    <div id="business">
+        <body>
+            <div id="warp_project">
+                <form>
+                    <div id="wp1" style="display: flex; height: 100%;">
+                        <!-- 이미지 섹션 (25%) -->
+                        <div id="projectimg">
+                            <img id="img_project" src="https://firebasestorage.googleapis.com/v0/b/softoasis-763c2.appspot.com/o/brandlogo%2Fsoftoasismaunlogo.png?alt=media&token=53fd6d37-801a-4f0e-9d42-280a991e55f1" onclick="location.href='/mataCommerce'" alt="Project Logo" style="width: 80%; height: auto;">
+                        </div>
+            
+                        <!-- 텍스트 섹션 (75%) -->
+                        <div id="projectinfo">
+                            <h1 id="hh1" onclick="location.href='#'" class="Deco">
+                                MetaCommerceE
+                            </h1>
+                            <p id="pp1">메타커머스E에 오신 것을 환영합니다.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="warp_project">
+                <form>
+                    <div id="wp1" style="display: flex;">
+                        <!-- 이미지 섹션 (25%) -->
+                        <div id="projectimg" style="width: 25%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                            <img id="img_project" src="https://firebasestorage.googleapis.com/v0/b/softoasis-763c2.appspot.com/o/brandlogo%2Fsoftoasismaunlogo.png?alt=media&token=53fd6d37-801a-4f0e-9d42-280a991e55f1" onclick="location.href='/seller'"alt="Project Logo" style="width: 80%; height: auto;">
+                        </div>
+    
+                        <!-- 텍스트 섹션 (75%) -->
+                        <div id="projectinfo">
+                            <h1 id="hh1" onclick="location.href='#'" style="cursor: pointer; color: black;" class="Deco">
+                                판매자 센터
+                            </h1>
+                            <p id="pp1">판매자 센터에 오신 것을 환영합니다.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </body>
+    </div>
+    <footer id="footer">
+        <a href="/main.html">
+            <img class="footer-logo" src="img/logo.png" alt="기업 로고" />
+        </a>
+        <p>&copy; 2024. softoasis Co. all rights reserved.</p>
+    </footer>
+</body>
+
+</html>

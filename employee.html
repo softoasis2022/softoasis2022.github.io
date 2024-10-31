@@ -1,0 +1,60 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main_styles.css">
+    <title>소프트오아시스</title>
+</head>
+<body>
+    <header class="header" id="header">
+        <a href="/main.html">
+            <img class="logo" src="img/logo.png" alt="기업 로고" id="logo"/>
+        </a>
+        <nav class="nav">
+            <ul>
+                <li><a href="/main.html" class="nav-link">HOME</a></li>
+                <li><a href="/company.html" class="nav-link">COMPANY</a></li>
+                <li><a href="/business.html" class="nav-link">BUSINESS</a></li>
+                <li><a href="/employee.html" class="nav-link">EMPLOYEE</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <header class="board">
+        <canvas id="canvas"></canvas>
+        <h1>메타커머스 E</h1>
+        <button class="custom-button">+ MORE</button>
+    </header>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+                "GLTFLoader": "https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js",
+                "OrbitControls": "https://unpkg.com/three@0.141.0/examples/jsm/controls/OrbitControls.js"
+            }
+        }
+    </script>
+
+    <script type="module" src="JS/Three_choco.js"></script>
+    <script src="JS/main.js"></script>
+    <br>
+    <div id = "black-Line">
+        <br><br><br>
+    </div>
+</body>
+<div id = "null-bin">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img 
+            style="max-width: 80%; height: auto;" 
+            src="https://firebasestorage.googleapis.com/v0/b/softoasis-763c2.appspot.com/o/brandlogo%2FOrganization%20chart.png?alt=media&token=af1f8109-ac0c-4c7c-a632-e8042749a02d" 
+            alt="Organization Chart">
+    </div>
+</div>
+<footer id="footer">
+    <a href="/main.html">
+        <img class="footer-logo" src="img/logo.png" alt="기업 로고" />
+    </a>
+    <p>&copy; 2024. softoasis Co. all rights reserved.</p>
+</footer>
+</html>

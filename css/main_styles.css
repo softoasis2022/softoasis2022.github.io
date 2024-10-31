@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    font-family: Hind, sans-serif;
+    background-color: #fff;
+    color: #fff;
+}
+
+body::before {
+    content: '';
+    position: fixed; /* 화면에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 680px; /* 배경을 전체 화면으로 설정 */
+    background-image: url('../img/main_back.jpg'); /* 배경 이미지 */
+    background-size: cover; /* 이미지 크기 조절 */
+    background-position: center; /* 이미지 위치 조정 */
+    opacity: 1; /* 흐림 효과 */
+    z-index: -1; /* 배경 이미지를 뒤로 보내기 */
+}
+
+.header {
+    display: flex;
+    top: 0; /* 상단에 위치 */
+    left: 0; /* 좌측에 위치 */
+    right: 0; /* 우측에 위치 */
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(50, 50, 50, 1);
+    transition: background-color 0.3s;
+}
+
+.header {
+    position: fixed;
+}
+
+.logo {
+    height: 50px; /* 로고의 높이를 조정 */
+    padding: 0 0 0 150px;
+}
+
+.nav ul {
+    list-style: none;
+    padding: 0 150px 0 0;
+    margin: 0; /* 기본 마진 제거 */
+}
+
+.nav li {
+    display: inline; /* 인라인 블록으로 변경 */
+    margin-left: 20px; /* 왼쪽 여백 */
+    font-size: 1em; /* 제목 크기 */
+    font-weight: bold; /* 제목 두께 */
+}
+
+.nav a {
+    text-decoration: none;
+    color: #fff; /* 기본 글자 색상 */
+    position: relative;
+    transition: color 0.3s ease; /* 글자 색상 변경 시 부드러운 전환 */
+}
+
+.nav a.active {
+    color: transparent; /* 클릭된 메뉴 글자 색상은 투명으로 설정 */
+    background: linear-gradient(to right, #5FFFE9, #FCF0BA); /* 그라데이션 배경 */
+    -webkit-background-clip: text; /* 텍스트 색상에 그라데이션을 적용 */
+    background-clip: text;
+    pointer-events: none; /* 클릭 이벤트 막기 */
+}
+
+.nav a::after, .nav a::before {
+    content: '';
+    position: absolute;
+    left: 50%; /* 중앙 정렬 */
+    bottom: -5px; /* 밑줄 위치 */
+    height: 4px; /* 밑줄 높이 */
+    width: 0; /* 초기 너비 */
+    background: #5CFEE9; /* 첫 번째 밑줄 색상 */
+    transition: width 0.4s ease, left 0.4s ease; /* 애니메이션 효과 */
+}
+
+.nav a::before {
+    background: #FCF0BA; /* 두 번째 밑줄 색상 */
+    transition-delay: 0.2s; /* 두 번째 밑줄 애니메이션 시간차 */
+}
+
+.nav li:hover a::after {
+    width: 100%; /* 너비 100%로 변경 */
+    left: 0; /* 왼쪽 정렬 */
+}
+
+.nav li:hover a::before {
+    width: 100%; /* 너비 100%로 변경 */
+    left: 0; /* 왼쪽 정렬 */
+}
+
+.board {
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 세로 방향 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    padding: 100px 0 0 0; /* 패딩 추가 */
+}
+
+#canvas {
+    width: 400px; /* 너비 */
+    height: 400px; /* 높이 */
+    margin-bottom: 20px; /* 아래쪽 여백 */
+}
+
+.board h1 {
+    font-size: 3em; /* 제목 크기 */
+    font-weight: bold; /* 제목 두께 */
+    color: #000; /* 제목 색상 */
+    margin: 10px 20px; /* 상하 마진 추가 */
+}
+
+.board p {
+    color: #000; /* 설명 텍스트 색상 */
+    max-width: 600px; /* 최대 너비 설정 */
+}
+
+.custom-button {
+    padding: 10px 20px; /* 버튼의 패딩 */
+    font-size: 1em; /* 버튼 글자 크기 */
+    font-weight: bold; /* 글자 두께 */
+    color: #FFF1BA; /* 글자 색상 */
+    background-color: #4ED4C2; /* 버튼 배경색 */
+    border: none; /* 기본 경계선 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    transition: background-color 0.3s; /* 호버 시 색상 변경 효과 */
+}
+
+.custom-button:hover {
+    color: #4ED4C2;
+    background-color: #FCF0BA; /* 호버 시 버튼 색상 */
+}
+
+#black-Line {
+    background-color: rgba(50, 50, 50, 1);
+}
+
+#null-bin{
+    background-color: rgba(60, 60, 60, 1);
+}
+
+#footer {
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    padding: 20px; /* 패딩 추가 */
+    background-color: rgba(50, 50, 50, 1); /* 배경색 설정 */
+    color: #fff; /* 텍스트 색상 */
+    font-size: 0.9em; /* 폰트 크기 조정 */
+}
+
+.footer-logo {
+    height: 40px; /* 로고 높이 설정 */
+    margin-right: 10px; /* 로고와 텍스트 간격 */
+}
+
+/* 특정 좌표 이하면 해더 색상 변경 */
+@media (max-width: 768px) {
+    #header {
+        background-color: rgba(255, 255, 255, 0.9); /* 변경할 색상 (반투명 흰색) */
+    }
+}
+
+@media (max-width: 920px) {
+    .nav {
+        display: none; /* 작은 화면에서 메뉴 숨기기 */
+    }
+    body::before {
+        height: 900px; /* 배경을 전체 화면으로 설정 */
+    }
+    .board h1 {
+        font-size: 2em; /* 제목 크기 조정 */
+    }
+}
