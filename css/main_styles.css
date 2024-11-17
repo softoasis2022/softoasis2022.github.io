@@ -278,7 +278,7 @@ body::before {
         height: 120px;
     }
     .logo {
-        height: 50px; /* 로고의 높이를 조정 */
+        height: 100px; /* 로고의 높이를 조정 */
         padding: 0 0 0 20px;
     }
     .hamburger {
