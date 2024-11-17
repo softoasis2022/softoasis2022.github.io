@@ -156,8 +156,8 @@ body::before {
 }
 
 #canvas {
-    width: 400px; /* 너비 */
-    height: 400px; /* 높이 */
+    width: 375px; /* 너비 */
+    height: 375px; /* 높이 */
 }
 
 .board h1 {
