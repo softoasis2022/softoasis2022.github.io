@@ -293,6 +293,9 @@ body::before {
         left: 0;
         padding: 20px;
     }
+    .news-container {
+        height: 100%; /* 부모 컨테이너 높이 100% 설정 */
+    }
 }
 
 @media (max-width: 1330px) {
