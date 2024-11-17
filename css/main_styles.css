@@ -81,6 +81,7 @@ body::before {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    z-index: 999;
     background-color: rgba(50, 50, 50, 1);
     transition: background-color 0.3s;
 }
@@ -206,7 +207,7 @@ body::before {
     flex-direction: column;
     align-items: center; /* 수평 중앙 정렬 */
     justify-content: center; /* 수직 중앙 정렬 */
-    height: 600px; /* 부모 컨테이너 높이 100% 설정 */
+    height: 1200px; /* 부모 컨테이너 높이 100% 설정 */
     padding: 20px;
     background-color: rgba(60, 60, 60, 1);
 }
@@ -216,6 +217,7 @@ body::before {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3개의 열로 나누기 */
     gap: 20px; /* 각 항목 간의 간격 */
+    margin: 20px 20px 20px 20px;
     height: 450px;
     width: 100%;
     max-width: 1200px; /* 최대 너비 제한 */
