@@ -266,26 +266,16 @@ body::before {
     margin-right: 10px; /* 로고와 텍스트 간격 */
 }
 
-/* 특정 좌표 이하면 해더 색상 변경 */
-@media (max-width: 768px) {
-    #header {
-        background-color: rgba(50, 50, 50, 1); /* 변경할 색상 (반투명 흰색) */
-    }
-}
-
-@media (max-width: 1005px) {
-    .header {
-        height: 120px;
+@media all and (max-width:767px) {
+    .logo {
+        height: 80px !important;
+        padding: 0 0 0 20px;
     }
     body::before {
         height: 1000px; /* 배경을 전체 화면으로 설정 */
     }
     .board h1 {
         font-size: 2em; /* 제목 크기 조정 */
-    }
-    .logo {
-        height: 80px !important;
-        padding: 0 0 0 20px;
     }
     .hamburger {
         display: flex;
@@ -308,7 +298,7 @@ body::before {
         width: 100%;
         background-color: rgba(50, 50, 50, 1);
         position: absolute;
-        top: 160px;
+        top: 240px;
         left: 0;
         padding: 20px;
     }
@@ -326,11 +316,14 @@ body::before {
         padding: 350px 0 0 0; /* 패딩 추가 */
     }
     .news-container {
-        height: 1200px;
+        height: 100%; /* 부모 컨테이너 높이 100% 설정 */
+    }
+    .header {
+        height: 200px;
     }
 }
 
-@media (max-width: 1330px) {
+@media all and (min-width:1024px) {
     .nav ul {
         list-style: none;
         padding: 0 50px 0 0;
