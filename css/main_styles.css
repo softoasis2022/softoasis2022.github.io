@@ -5,6 +5,53 @@ body {
     color: #fff;
 }
 
+#ns {
+    font-family: Hind, sans-serif;
+    margin: 20px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+    transition: transform 0.3s ease; /* 회전 애니메이션 */
+}
+
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* 회전 및 투명도 애니메이션 */
+}
+
+.bar1 {
+    background-color: #5FFFE9;
+}
+
+.bar2 {
+    background-color: white;
+}
+
+.bar3 {
+    background-color: #FCF0BA;
+}
+
+/* 회전된 상태 */
+
+/* 각 바의 회전 및 숨김 효과 */
+.hamburger.rotated .bar1 {
+    transform: rotate(90deg) translate(8px, 7px); /* 첫 번째 바 */
+}
+
+.hamburger.rotated .bar2 {
+    transform: rotate(90deg); /* 두 번째 바 숨기기 */
+}
+
+.hamburger.rotated .bar3 {
+    transform: rotate(90deg) translate(-8px, -7px); /* 세 번째 바 */
+}
+
 body::before {
     content: '';
     position: fixed; /* 화면에 고정 */
@@ -37,12 +84,12 @@ body::before {
 
 .logo {
     height: 50px; /* 로고의 높이를 조정 */
-    padding: 0 0 0 150px;
+    padding: 0 0 0 300px;
 }
 
 .nav ul {
     list-style: none;
-    padding: 0 150px 0 0;
+    padding: 0 300px 0 0;
     margin: 0; /* 기본 마진 제거 */
 }
 
@@ -124,25 +171,75 @@ body::before {
     padding: 10px 20px; /* 버튼의 패딩 */
     font-size: 1em; /* 버튼 글자 크기 */
     font-weight: bold; /* 글자 두께 */
-    color: #FFF1BA; /* 글자 색상 */
+    color: #000; /* 글자 색상 */
     background-color: #4ED4C2; /* 버튼 배경색 */
-    border: none; /* 기본 경계선 제거 */
+    border: 2px solid #000; /* 기본 경계선 제거 */
     border-radius: 5px; /* 모서리 둥글게 */
     cursor: pointer; /* 마우스 커서 변경 */
     transition: background-color 0.3s; /* 호버 시 색상 변경 효과 */
 }
 
 .custom-button:hover {
-    color: #4ED4C2;
+    color: #000;
     background-color: #FCF0BA; /* 호버 시 버튼 색상 */
 }
 
 #black-Line {
     background-color: rgba(50, 50, 50, 1);
+    margin-bottom: -22px;
 }
 
 #null-bin{
     background-color: rgba(60, 60, 60, 1);
+}
+
+/* 화면 중앙 정렬을 위한 Flexbox */
+.news-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 수평 중앙 정렬 */
+    justify-content: center; /* 수직 중앙 정렬 */
+    height: 600px; /* 부모 컨테이너 높이 100% 설정 */
+    padding: 20px;
+    background-color: rgba(60, 60, 60, 1);
+}
+
+/* 뉴스 그리드 레이아웃 */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3개의 열로 나누기 */
+    gap: 20px; /* 각 항목 간의 간격 */
+    height: 450px;
+    width: 100%;
+    max-width: 1200px; /* 최대 너비 제한 */
+}
+
+/* 각 뉴스 항목의 스타일 */
+.news-item {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* 뉴스 항목에 마우스를 올렸을 때 효과 */
+.news-item:hover {
+    transform: translateY(-5px);
+}
+
+/* 뉴스 제목 스타일 */
+.news-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+/* 뉴스 내용 스타일 */
+.news-content {
+    font-size: 1rem;
+    color: #555;
 }
 
 #footer {
@@ -163,18 +260,49 @@ body::before {
 /* 특정 좌표 이하면 해더 색상 변경 */
 @media (max-width: 768px) {
     #header {
-        background-color: rgba(255, 255, 255, 0.9); /* 변경할 색상 (반투명 흰색) */
+        background-color: rgba(50, 50, 50, 1); /* 변경할 색상 (반투명 흰색) */
     }
 }
 
-@media (max-width: 920px) {
-    .nav {
-        display: none; /* 작은 화면에서 메뉴 숨기기 */
-    }
+@media (max-width: 950px) {
     body::before {
         height: 900px; /* 배경을 전체 화면으로 설정 */
     }
     .board h1 {
         font-size: 2em; /* 제목 크기 조정 */
+    }
+}
+
+@media (max-width: 1005px) {
+    .logo {
+        height: 50px; /* 로고의 높이를 조정 */
+        padding: 0 0 0 20px;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .nav {
+        display: none; /* 작은 화면에서 메뉴 숨기기 */
+    }
+    .nav.active {
+        display: block;
+        width: 100%;
+        background-color: rgba(50, 50, 50, 1);
+        position: absolute;
+        top: 80px;
+        left: 0;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 1330px) {
+    .nav ul {
+        list-style: none;
+        padding: 0 50px 0 0;
+        margin: 0; /* 기본 마진 제거 */
+    }
+    .logo {
+        height: 50px; /* 로고의 높이를 조정 */
+        padding: 0 0 0 50px;
     }
 }
