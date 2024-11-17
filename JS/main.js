@@ -9,26 +9,24 @@ window.addEventListener('scroll', function() {
     const nav = document.querySelector('.nav');  // .nav.active 요소
     const activeLink = document.querySelector('.nav-link.active');  // 현재 활성화된 메뉴 항목
 
+    const isMobile = window.innerWidth <= 1005;
+
     // 스크롤 위치가 10px 이하일 때
     if (window.scrollY < 10) { 
         // 헤더와 메뉴 스타일 변경 (기본값)
         header.style.backgroundColor = '#323232'; // 헤더 배경색
         logo.src = 'img/logo.png'; // 원래 로고 이미지
-        nav.style.backgroundColor = 'rgba(50, 50, 50, 1)';  // 기본 배경색 (스크롤 시)
+         
+        if (isMobile) {
+            nav.style.backgroundColor = '#323232';
+        }
+        else{}
 
         navLinks.forEach(link => {
             if (link !== activeLink) {
                 link.style.color = '#fff'; // 기본 글자 색상
             }
         });
-
-        // 클릭된 메뉴의 색상 및 스타일 설정
-        if (activeLink) {
-            activeLink.style.color = 'transparent'; // 클릭된 메뉴 글자 색상은 투명으로 설정
-            activeLink.style.background = 'linear-gradient(to right, #5FFFE9, #FCF0BA)'; // 그라데이션 배경
-            activeLink.style.backgroundClip = 'text'; // 배경을 텍스트에 적용
-            activeLink.style.pointerEvents = 'none'; // 클릭 방지
-        }
 
         // 햄버거 아이콘의 윤곽선 기본 (투명)
         if (bar1 && bar2 && bar3) {
@@ -41,21 +39,17 @@ window.addEventListener('scroll', function() {
         // 헤더와 메뉴 스타일 변경 (스크롤 시)
         header.style.backgroundColor = '#fff'; // 헤더 배경색 변경
         logo.src = 'img/logo-dark.png'; // 변경된 로고 이미지
-        nav.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'; // 어두운 배경으로 변경
+        
+        if (isMobile) {
+            nav.style.backgroundColor = '#fff';
+        }
+        else{}
 
         navLinks.forEach(link => {
             if (link !== activeLink) {
                 link.style.color = '#000'; // 글자 색상을 검정색으로 변경
             }
         });
-
-        // 클릭된 메뉴의 색상은 유지
-        if (activeLink) {
-            activeLink.style.color = 'transparent'; // 클릭된 메뉴 글자 색상은 투명으로 유지
-            activeLink.style.background = 'linear-gradient(to right, #5FFFE9, #FCF0BA)'; // 그라데이션 배경 유지
-            activeLink.style.backgroundClip = 'text'; // 배경을 텍스트에 적용
-            activeLink.style.pointerEvents = 'none'; // 클릭 방지
-        }
 
         // 햄버거 아이콘의 윤곽선 색상 변경 (검은색)
         if (bar1 && bar2 && bar3) {
