@@ -298,9 +298,19 @@ body::before {
         width: 100%;
         background-color: rgba(50, 50, 50, 1);
         position: absolute;
-        top: 80px;
+        top: 240px;
         left: 0;
         padding: 20px;
+    }
+    .nav.active .nav-link {
+        font-family: 'Arial', sans-serif;  /* 원하는 글꼴로 설정 */
+        font-size: 30px;  /* 글자 크기 조정 */
+        font-weight: bold;  /* 글자 두께 */
+        color: #fff;  /* 글자 색상 */
+        text-align: center;  /* 텍스트 가운데 정렬 */
+        text-transform: uppercase;  /* 대문자 변환 */
+        padding: 10px 15px;  /* 상하 여백 추가 */
+        transition: color 0.3s ease;  /* 색상 변경에 부드러운 전환 효과 */
     }
     .board {
         padding: 350px 0 0 0; /* 패딩 추가 */
