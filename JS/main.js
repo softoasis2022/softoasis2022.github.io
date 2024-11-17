@@ -38,3 +38,10 @@ window.addEventListener('scroll', function() {
         }
     }
 });
+
+function toggleMenu() {
+    const nav = document.querySelector('.nav');
+    const hamburger = document.querySelector('.hamburger');
+    nav.classList.toggle('active');
+    hamburger.classList.toggle('rotated'); // 클릭 시 회전 클래스 토글
+}
