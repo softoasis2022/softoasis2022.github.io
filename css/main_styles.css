@@ -323,14 +323,64 @@ body::before {
     }
 }
 
-@media all and (min-width:1024px) {
+@media all and (max-width:1024px) {
     .nav ul {
         list-style: none;
-        padding: 0 50px 0 0;
+        padding: 0 20px 0 0;
         margin: 0; /* 기본 마진 제거 */
     }
     .logo {
         height: 50px; /* 로고의 높이를 조정 */
-        padding: 0 0 0 50px;
+        padding: 0 0 0 20px;
+    }
+    body::before {
+        height: 1000px; /* 배경을 전체 화면으로 설정 */
+    }
+    .board h1 {
+        font-size: 2em; /* 제목 크기 조정 */
+    }
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        cursor: pointer;
+        margin-right: 20px;
+    }
+    
+    .bar1, .bar2, .bar3 {
+        width: 80px;
+        height: 10px;
+        transition: transform 0.3s ease, opacity 0.3s ease; /* 회전 및 투명도 애니메이션 */
+    }
+    .nav {
+        display: none; /* 작은 화면에서 메뉴 숨기기 */
+    }
+    .nav.active {
+        display: block;
+        width: 100%;
+        background-color: rgba(50, 50, 50, 1);
+        position: absolute;
+        top: 240px;
+        left: 0;
+        padding: 20px;
+    }
+    .nav.active .nav-link {
+        font-family: 'Arial', sans-serif;  /* 원하는 글꼴로 설정 */
+        font-size: 30px;  /* 글자 크기 조정 */
+        font-weight: bold;  /* 글자 두께 */
+        color: #fff;  /* 글자 색상 */
+        text-align: center;  /* 텍스트 가운데 정렬 */
+        text-transform: uppercase;  /* 대문자 변환 */
+        padding: 10px 15px;  /* 상하 여백 추가 */
+        transition: color 0.3s ease;  /* 색상 변경에 부드러운 전환 효과 */
+    }
+    .board {
+        padding: 350px 0 0 0; /* 패딩 추가 */
+    }
+    .news-container {
+        height: 100%; /* 부모 컨테이너 높이 100% 설정 */
+    }
+    .header {
+        height: 100px;
     }
 }
