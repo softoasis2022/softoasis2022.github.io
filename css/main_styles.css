@@ -16,7 +16,6 @@ body {
     gap: 5px;
     cursor: pointer;
     margin-right: 20px;
-    transition: transform 0.3s ease; /* 회전 애니메이션 */
 }
 
 .bar1, .bar2, .bar3 {
@@ -41,7 +40,7 @@ body {
 
 /* 각 바의 회전 및 숨김 효과 */
 .hamburger.rotated .bar1 {
-    transform: rotate(90deg) translate(8px, 7px); /* 첫 번째 바 */
+    transform: rotate(90deg) translate(8px, 10px); /* 첫 번째 바 */
 }
 
 .hamburger.rotated .bar2 {
@@ -49,7 +48,7 @@ body {
 }
 
 .hamburger.rotated .bar3 {
-    transform: rotate(90deg) translate(-8px, -7px); /* 세 번째 바 */
+    transform: rotate(90deg) translate(-8px, -10px); /* 세 번째 바 */
 }
 
 body::before {
@@ -269,7 +268,7 @@ body::before {
         height: 120px;
     }
     body::before {
-        height: 900px; /* 배경을 전체 화면으로 설정 */
+        height: 1000px; /* 배경을 전체 화면으로 설정 */
     }
     .board h1 {
         font-size: 2em; /* 제목 크기 조정 */
@@ -284,7 +283,6 @@ body::before {
         gap: 10px;
         cursor: pointer;
         margin-right: 20px;
-        transition: transform 0.3s ease; /* 회전 애니메이션 */
     }
     
     .bar1, .bar2, .bar3 {
@@ -308,7 +306,7 @@ body::before {
         padding: 350px 0 0 0; /* 패딩 추가 */
     }
     .news-container {
-        height: 1000px;
+        height: 1200px;
     }
 }
 
