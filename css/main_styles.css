@@ -21,7 +21,15 @@ body {
 .bar1, .bar2, .bar3 {
     width: 30px;
     height: 3px;
+    border: 1px solid transparent;  /* 기본적으로 투명한 윤곽선 */
+    border-radius: 4px;  /* 외각선의 둥근 모서리 */
     transition: transform 0.3s ease, opacity 0.3s ease; /* 회전 및 투명도 애니메이션 */
+}
+
+.scrolled .bar1,
+.scrolled .bar2,
+.scrolled .bar3 {
+    border-color: #000;  /* 스크롤 시 윤곽선 색상 */
 }
 
 .bar1 {
