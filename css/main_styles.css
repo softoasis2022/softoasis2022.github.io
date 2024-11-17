@@ -324,13 +324,8 @@ body::before {
 }
 
 @media all and (max-width:1024px) {
-    .nav ul {
-        list-style: none;
-        padding: 0 20px 0 0;
-        margin: 0; /* 기본 마진 제거 */
-    }
     .logo {
-        height: 50px; /* 로고의 높이를 조정 */
+        height: 80px !important;
         padding: 0 0 0 20px;
     }
     body::before {
@@ -381,6 +376,6 @@ body::before {
         height: 100%; /* 부모 컨테이너 높이 100% 설정 */
     }
     .header {
-        height: 100px;
+        height: 200px;
     }
 }
